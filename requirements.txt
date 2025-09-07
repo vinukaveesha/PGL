@@ -1,2 +1,10 @@
 numpy>=1.16.4
 cython>=0.25.2
+paddlepaddle-gpu>=2.0.0  # or paddlepaddle for CPU version
+pgl>=2.0.0
+numpy>=1.19.0
+tqdm>=4.60.0
+PyYAML>=5.4.0
+easydict>=1.9.0
+tensorboardX>=2.2.0
+ogb>=1.3.0

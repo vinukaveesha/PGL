@@ -1,0 +1,9 @@
+paddle>=2.0.0
+pgl>=2.1.2
+numpy
+tqdm
+pyyaml
+tensorboardX
+easydict
+scipy
+scikit-learn

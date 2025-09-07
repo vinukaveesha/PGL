@@ -7,9 +7,14 @@
 # Virtualenv
 /.venv/
 /venv/
+# any nested virtualenvs
+**/.venv/
+**/venv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
+# any nested python caches
+**/__pycache__/
 *.py[cod]
 
 # C extensions
@@ -23,7 +28,9 @@ __pycache__/
 /eggs/
 /lib/
 /lib64/
-/output/
+# outputs anywhere (training logs, checkpoints, predictions)
+output/
+**/output/
 /parts/
 /sdist/
 /var/
@@ -65,8 +72,48 @@ tutorials/.ipynb_checkpoints/
 **checkpoints
 **logs
 **outputs
+**/runs/
+**/log/
+**/logs/
 pgl/tests/local*
 jupyter
 .gitignore.bak
 
 .DS_Store
+
+examples/kddcup2021/CITATIONNETWORKV1/r_unimp/dataset/outputacm.txt
+
+*.pkl
+*.npy
+*.pt
+# common large artifacts
+*.bin
+*.ckpt
+*.pth
+*.onnx
+
+# dataset folders anywhere
+dataset/
+data/
+**/dataset/
+**/data/
+
+# processed datasets for kddcup examples
+examples/kddcup2021/**/dataset/processed/**
+examples/kddcup2021/**/dataset/*_graph_*/**
+examples/kddcup2021/**/dataset/*graph*/**
+
+# model outputs under examples (training & predictions)
+examples/**/output/**
+examples/**/predictions/**
+
+# IDE/editor settings
+.vscode/
+**/.vscode/
+.idea/
+**/.idea/
+
+# OS cruft
+Thumbs.db
+ehthumbs.db
+*.DS_Store

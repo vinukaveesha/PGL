@@ -1,0 +1,41 @@
+# Configuration for R-UniMP on Citation Network V1
+data_dir: "dataset"
+samples: "25-15"
+seed: 42
+num_workers: 2
+batch_size: 512
+
+# Model parameters
+model:
+    name: "r_unimp"
+    input_size: 768
+    num_class: 100  # Reduced from 12609 to make training more manageable
+    num_layers: 2
+    feat_drop: 0.0
+    attn_drop: 0.0
+    num_heads: 4
+    hidden_size: 512
+    activation: False
+    drop: 0.5
+    edge_type: 3  # citation, author->paper, paper->author
+
+# M2V parameters
+m2v_dim: 512
+
+# Training parameters
+output_path: "./output/citationnetwork_runimp"
+epochs: 50
+eval_step: 5
+eval_per_steps: 5
+eval_max_steps: 100
+max_steps: 50
+
+# Optimizer parameters
+warmup_proportion: -1
+weight_decay: 0.0001
+lr: 0.001
+clip: -1
+use_lr_decay: True
+
+# Test parameters
+test_name: "test"
