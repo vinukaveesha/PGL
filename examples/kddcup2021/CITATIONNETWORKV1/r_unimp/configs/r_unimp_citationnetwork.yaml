@@ -1,9 +1,9 @@
 # Configuration for R-UniMP on Citation Network V1
 data_dir: "dataset"
-samples: "25-15"
+samples: "15-10"
 seed: 42
 num_workers: 0  # macOS-safe: avoid multiprocessing
-batch_size: 512
+batch_size: 32
 
 # Model parameters
 model:
@@ -24,11 +24,11 @@ m2v_dim: 512
 
 # Training parameters
 output_path: "./output/citationnetwork_runimp"
-epochs: 50
-eval_step: 5
-eval_per_steps: 5
-eval_max_steps: 100
-max_steps: 50
+epochs: 10  # Reduced for testing
+eval_step: 2
+eval_per_steps: 2
+eval_max_steps: 10  # Reduced for testing
+max_steps: 20  # Reduced for testing
 
 # Optimizer parameters
 warmup_proportion: -1
