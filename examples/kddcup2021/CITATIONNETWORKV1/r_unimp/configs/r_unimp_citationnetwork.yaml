@@ -2,7 +2,7 @@
 data_dir: "dataset"
 samples: "25-15"
 seed: 42
-num_workers: 2
+num_workers: 0  # macOS-safe: avoid multiprocessing
 batch_size: 512
 
 # Model parameters
@@ -36,6 +36,11 @@ weight_decay: 0.0001
 lr: 0.001
 clip: -1
 use_lr_decay: True
+
+# Runtime (optional)
+device: cpu
+pin_memory: false
+persistent_workers: false
 
 # Test parameters
 test_name: "test"

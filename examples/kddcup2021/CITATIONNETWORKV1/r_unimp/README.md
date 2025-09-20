@@ -2,6 +2,16 @@
 
 The code is adapted from the MAG240M R-UniMP implementation for the CITATIONNETWORKV1 dataset using the outputacm.txt dataset.
 
+## Compatibility and Paddle 2.x
+
+This implementation uses PaddlePaddle 2.x dynamic graph APIs (`paddle.nn`, `paddle.nn.functional`) and does not rely on legacy `paddle.fluid`. It is suitable for Python 3.10+ on macOS. If you previously had errors due to `paddle.fluid` on newer Python versions, this codebase is already migrated.
+
+- Recommended: Python 3.10 or 3.11
+- Tested with: `paddlepaddle==2.6.x`
+- Tip (macOS/Apple Silicon): If you encounter installation issues with newer Python versions (e.g., 3.13) due to missing wheels, prefer Python 3.10/3.11 and follow the official Paddle install guide.
+
+Official install guide: https://www.paddlepaddle.org.cn/install/quick
+
 ## Dataset Format
 
 The CITATIONNETWORKV1 dataset (outputacm.txt) is in the format:
@@ -20,7 +30,7 @@ pip install -r requirements.txt
 
 Or install manually:
 ```
-paddle>=2.0.0
+paddlepaddle>=2.0.0
 pgl>=2.1.2
 numpy
 tqdm

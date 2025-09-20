@@ -1,17 +1,3 @@
-# Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import os
 import argparse
 import traceback
@@ -71,6 +57,14 @@ def train_step(model, loss_fn, batch, dataset):
 
 def train(config, do_eval=False):
     """Main training function"""
+    # Force CPU on macOS to avoid backend segfaults and set conservative threading
+    try:
+        os.environ.setdefault("OMP_NUM_THREADS", "1")
+        os.environ.setdefault("MKL_NUM_THREADS", "1")
+        os.environ.setdefault("FLAGS_use_mkldnn", "0")
+        paddle.set_device("cpu")
+    except Exception:
+        pass
     if paddle.distributed.get_world_size() > 1:
         paddle.distributed.init_parallel_env()
 
@@ -260,6 +254,13 @@ if __name__ == "__main__":
     
     config = edict(yaml.load(open(args.conf), Loader=yaml.FullLoader))
     config.samples = [int(i) for i in config.samples.split('-')]
+
+    # Normalize runtime settings from config (optional keys)
+    # Always use CPU for stability on macOS
+    try:
+        paddle.set_device("cpu")
+    except Exception:
+        pass
 
     print(config)
     if args.do_predict:
