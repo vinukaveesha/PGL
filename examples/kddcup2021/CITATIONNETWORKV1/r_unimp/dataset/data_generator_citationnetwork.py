@@ -18,7 +18,6 @@ class CitationNetwork(object):
     def __init__(self, config):
         self.data_dir = config.data_dir
         
-        # Fix the path resolution issue
         if os.path.isabs(self.data_dir):
             # If data_dir is absolute path, use it directly
             self.processed_dir = os.path.join(self.data_dir, "processed")
